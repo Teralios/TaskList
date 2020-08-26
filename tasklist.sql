@@ -37,5 +37,5 @@ CREATE TABLE wcf1_subtask(
 );
 
 -- keys
-ALTER TABLE wcf1_task ADD FOREIGN KEY (userID) REFERENCES wcf1_user (userID);
-ALTER TABLE wcf1_subtask ADD FOREIGN KEY (taskID) REFERENCES wcf1_task (taskID);
+ALTER TABLE wcf1_task ADD FOREIGN KEY (userID) REFERENCES wcf1_user (userID) ON DELETE CASCADE;
+ALTER TABLE wcf1_subtask ADD FOREIGN KEY (taskID) REFERENCES wcf1_task (taskID) ON DELETE CASCADE;
