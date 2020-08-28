@@ -7,6 +7,7 @@ CREATE TABLE wcf1_task(
     deadline INT(10) NOT NULL DEFAULT 0,
     updated INT(10) NOT NULL DEFAULT 0,
     visibility TINYINT(1) NOT NULL DEFAULT 0,
+    priority TINYINT(1) NOT NULL DEFAULT 1,
     status TINYINT(1) NOT NULL DEFAULT 0,
     title VARCHAR(191) NOT NULL DEFAULT '',
     message MEDIUMTEXT,

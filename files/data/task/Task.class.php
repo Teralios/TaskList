@@ -28,4 +28,10 @@ class Task extends DatabaseObject
     const STATUS_OPEN = 0;
     const STATUS_IN_PROCESS = 1;
     const STATUS_FINISHED = 2;
+
+    // priority
+    const PRIORITY_LOW = 0;
+    const PRIORITY_NORMAL = 1;
+    const PRIORITY_HIGH = 2;
+    const PRIORITY_ALERT = 3;
 }
