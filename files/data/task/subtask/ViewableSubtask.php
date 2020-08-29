@@ -1,12 +1,13 @@
 <?php
-
 namespace wcf\data\task\subtask;
 
 // imports
-use wcf\data\DatabaseObject;
+use wcf\data\DatabaseObjectDecorator;
+use wcf\system\bbcode\SimpleMessageParser;
+use wcf\system\exception\SystemException;
 
 /**
- * Class        Subtask
+ * Class        ViewableSubtask
  * @package     TaskList
  * @subpackage  wcf\data\task\subtask
  * @author      Karsten (Teralios) Achterrath
@@ -21,9 +22,17 @@ use wcf\data\DatabaseObject;
  * @property-read string $title
  * @property-read string $message
  */
-class Subtask extends DatabaseObject
+class ViewableSubtask extends DatabaseObjectDecorator
 {
     // inherit vars
-    protected static $databaseTableName = 'subtask';
-    protected static $databaseTableIndexName = 'subtaskID';
+    protected static $baseClass = Subtask::class;
+
+    /**
+     * @return string
+     * @throws SystemException
+     */
+    public function getMessage()
+    {
+        return /** @scrutinizer ignore-call */SimpleMessageParser::getInstance()->parse($this->message);
+    }
 }

@@ -25,6 +25,9 @@ class TaskAddForm extends AbstractFormBuilderForm
     public $objectActionClass = TaskAction::class;
     public $formAction = 'create';
 
+    /**
+     * @inheritdoc
+     */
     public function createForm()
     {
         parent::createForm();
@@ -63,7 +66,12 @@ class TaskAddForm extends AbstractFormBuilderForm
 
         // message
         $messageContainer = WysiwygFormContainer::create('message')
+            ->messageObjectType('de.teralios.taskList.message')
+            ->supportSmilies()
             ->required();
         $this->form->appendChild($messageContainer);
+
+        // additional data
+        // @todo url to a thread, bugtracker or other maybe?
     }
 }
