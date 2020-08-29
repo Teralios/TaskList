@@ -2,7 +2,6 @@
 namespace wcf\data\task;
 
 // imports
-use wcf\data\DatabaseObjectList;
 use wcf\data\task\subtask\ViewableSubtaskList;
 use wcf\system\exception\SystemException;
 
@@ -14,8 +13,11 @@ use wcf\system\exception\SystemException;
  * @copyright   ©2020 Teralios.de
  * @license     GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
  */
-class ViewableTaskList extends DatabaseObjectList
+class ViewableTaskList extends TaskList
 {
+    // inherit vars
+    public $decoratorClassName = ViewableTask::class;
+
     /**
      * @var bool
      */

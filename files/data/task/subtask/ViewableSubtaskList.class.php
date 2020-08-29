@@ -3,7 +3,6 @@
 namespace wcf\data\task\subtask;
 
 // imports
-use wcf\data\DatabaseObjectList;
 use wcf\data\task\ViewableTask;
 use wcf\data\task\ViewableTaskList;
 use wcf\system\exception\SystemException;
@@ -16,7 +15,7 @@ use wcf\system\exception\SystemException;
  * @copyright   ©2020 Teralios.de
  * @license     GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
  */
-class ViewableSubtaskList extends DatabaseObjectList
+class ViewableSubtaskList extends SubtaskList
 {
     // inherit vars
     public $decoratorClassName = ViewableSubtask::class;
@@ -93,8 +92,8 @@ class ViewableSubtaskList extends DatabaseObjectList
 
         if (count($taskIDs)) {
             $subtaskList->getConditionBuilder()->add(
-                $subtaskList->getDatabaseTableAlias() . '.taskID IN (?' . str_repeat(', ?', count($taskIDs) - 1) . ')',
-                $taskIDs
+                $subtaskList->getDatabaseTableAlias() . '.taskID IN (?)',
+                [$taskIDs]
             );
         }
 
