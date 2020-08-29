@@ -40,14 +40,14 @@ class ViewableTaskList extends TaskList
         parent::readObjects();
 
         if ($this->withSubtask === true) {
-            $subtaskList = ViewableSubtaskList::buildForTasks($this);
-            $subtaskList->readObjects();
+            $subtaskList = new ViewableSubtaskList();
+            $subtaskList->forTasks($this)->readObjects();
 
             /** @var ViewableTask $object */
             foreach ($this->objects as $object) {
                 $objectSubtaskList = new ViewableSubtaskList();
                 $objectSubtaskList->setTask($object)->setObjects($subtaskList);
-                /** @scrutinizer ignore-call */ $object->setSubtasks($objectSubtaskList);
+                /** @scrutinizer ignore-call */$object->setSubtasks($objectSubtaskList);
             }
         }
     }

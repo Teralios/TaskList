@@ -4,7 +4,6 @@ namespace wcf\data\task\subtask;
 
 // imports
 use wcf\data\task\ViewableTask;
-use wcf\data\task\ViewableTaskList;
 use wcf\system\exception\SystemException;
 
 /**
@@ -48,6 +47,12 @@ class ViewableSubtaskList extends SubtaskList
         if ($this->task === null) {
             throw new SystemException('setObjects is only supported when "' . ViewableTask::class . '" is set.');
         }
+
+        // reset objects
+        $this->objectIDs = $this->indexToObject = null;
+        $this->objects = [];
+
+        // set objects from main subtask list.
         /** @var ViewableSubtask $subtask */
         foreach ($subtaskList as $subtask)
         {
@@ -59,44 +64,5 @@ class ViewableSubtaskList extends SubtaskList
         }
 
         return $this;
-    }
-
-    /**
-     * Return a prepared subtask list for one task.
-     * @param ViewableTask $task
-     * @return static
-     * @throws SystemException
-     */
-    public static function buildForTask(ViewableTask $task)//: ViewableSubtaskList
-    {
-        $subtaskList = new ViewableSubtaskList();
-        $subtaskList->getConditionBuilder()->add(
-            $subtaskList->getDatabaseTableAlias() . '.taskID = ?',
-            [$task->getObjectID()]
-        );
-
-        return $subtaskList;
-    }
-
-    /**
-     * Returns a prepared subtask list for a list of tasks.
-     * @param ViewableTaskList $taskList
-     * @return static
-     * @throws SystemException
-     */
-    public static function buildForTasks(ViewableTaskList $taskList)
-    {
-        $taskIDs = $taskList->getObjectIDs();
-
-        $subtaskList = new ViewableSubtaskList();
-
-        if (count($taskIDs)) {
-            $subtaskList->getConditionBuilder()->add(
-                $subtaskList->getDatabaseTableAlias() . '.taskID IN (?)',
-                [$taskIDs]
-            );
-        }
-
-        return $subtaskList;
     }
 }
