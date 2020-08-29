@@ -58,7 +58,7 @@ class ViewableTaskList extends DatabaseObjectList
             foreach ($this->objects as $object) {
                 $objectSubtaskList = new ViewableSubtaskList();
                 $objectSubtaskList->setTask($object)->setObjects($subtaskList);
-                $object->setSubtasks($objectSubtaskList);
+                /** @scrutinizer ignore-call */ $object->setSubtasks($objectSubtaskList);
             }
         }
     }

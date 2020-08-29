@@ -82,22 +82,21 @@ class ViewableSubtaskList extends DatabaseObjectList
     /**
      * Returns a prepared subtask list for a list of tasks.
      * @param ViewableTaskList $taskList
-     * @return static|null
+     * @return static
      * @throws SystemException
      */
     public static function buildForTasks(ViewableTaskList $taskList)
     {
         $taskIDs = $taskList->getObjectIDs();
 
-        if (!count($taskIDs)) {
-            return null;
-        }
-
         $subtaskList = new ViewableSubtaskList();
-        $subtaskList->getConditionBuilder()->add(
-            $subtaskList->getDatabaseTableAlias() . '.taskID IN (?' . str_repeat(', ?', count($taskIDs) - 1) . ')',
-            $taskIDs
-        );
+
+        if (count($taskIDs)) {
+            $subtaskList->getConditionBuilder()->add(
+                $subtaskList->getDatabaseTableAlias() . '.taskID IN (?' . str_repeat(', ?', count($taskIDs) - 1) . ')',
+                $taskIDs
+            );
+        }
 
         return $subtaskList;
     }
