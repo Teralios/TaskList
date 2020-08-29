@@ -24,19 +24,6 @@ class ViewableTaskList extends TaskList
     protected $withSubtask = false;
 
     /**
-     * Set access level for tasks
-     * @param int $accessLevel
-     * @throws SystemException
-     */
-    public function accessLevel($accessLevel = Task::VISIBLE_PUBLIC)
-    {
-        $this->getConditionBuilder()->add(
-            $this->getDatabaseTableAlias() . '.visibility >= ?',
-            [$accessLevel]
-        );
-    }
-
-    /**
      * Set load subtasks.
      */
     public function withSubtask()
