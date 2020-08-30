@@ -68,6 +68,7 @@ class TaskAddForm extends AbstractFormBuilderForm
         $messageContainer = WysiwygFormContainer::create('message')
             ->messageObjectType('de.teralios.taskList.message')
             ->supportSmilies()
+            ->maximumLength(5000)
             ->required();
         $this->form->appendChild($messageContainer);
 
