@@ -4,6 +4,10 @@ namespace wcf\data\task;
 
 // imports
 use wcf\data\DatabaseObject;
+use wcf\data\ITitledLinkObject;
+use wcf\system\exception\SystemException;
+use wcf\system\request\LinkHandler;
+use wcf\system\WCF;
 
 /**
  * Class        Task
@@ -26,7 +30,7 @@ use wcf\data\DatabaseObject;
  * @property-read int $subtask
  * @property-read int $completed
  */
-class Task extends DatabaseObject
+class Task extends DatabaseObject implements ITitledLinkObject
 {
     // inherit var
     protected static $databaseTableName = 'task';
@@ -39,12 +43,49 @@ class Task extends DatabaseObject
 
     // task status
     const STATUS_OPEN = 0;
-    const STATUS_IN_PROCESS = 1;
-    const STATUS_FINISHED = 2;
+    const STATUS_IN_PROGRESS = 1;
+    const STATUS_CLOSED = 2;
 
     // priority
     const PRIORITY_LOW = 0;
     const PRIORITY_NORMAL = 1;
     const PRIORITY_HIGH = 2;
     const PRIORITY_ALERT = 3;
+
+    /**
+     * @inheritdoc
+     * @throws SystemException
+     */
+    public function getLink()
+    {
+        return LinkHandler::getInstance()->getLink(
+            'Task',
+            ['object' => $this]
+        );
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * __toString
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isOwner(): bool
+    {
+        return ($this->userID === WCF::getUser()->userID);
+    }
 }

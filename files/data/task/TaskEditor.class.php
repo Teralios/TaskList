@@ -14,6 +14,19 @@ use wcf\system\WCF;
  * @author      Karsten (Teralios) Achterrath
  * @copyright   ©2020 Teralios.de
  * @license     GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
+ *
+ * @property-read int $taskID
+ * @property-read int $userID
+ * @property-read int $created
+ * @property-read int $deadline
+ * @property-read int $updated
+ * @property-read int $visibility
+ * @property-read int $priority
+ * @property-read int $status
+ * @property-read string $title
+ * @property-read string $message
+ * @property-read int $subtask
+ * @property-read int $completed
  */
 class TaskEditor extends DatabaseObjectEditor
 {
