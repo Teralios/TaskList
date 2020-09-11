@@ -38,7 +38,7 @@ class ViewableTask extends DatabaseObjectDecorator
     protected $subtaskList = null;
 
     /**
-     * Icon map for viewable task.
+     * Icon map for task.
      */
     const ICON_MAP = [
         Task::STATUS_OPEN => 'fa-square-o',
@@ -46,6 +46,9 @@ class ViewableTask extends DatabaseObjectDecorator
         Task::STATUS_CLOSED => 'fa-check-square-o'
     ];
 
+    /**
+     * css class map for priority
+     */
     const PRIORITY_CLASS = [
         Task::PRIORITY_ALERT => 'alert',
         Task::PRIORITY_HIGH => 'high',
@@ -53,6 +56,9 @@ class ViewableTask extends DatabaseObjectDecorator
         Task::PRIORITY_LOW => 'low'
     ];
 
+    /**
+     * css class map for task.
+     */
     const STATUS_CLASS = [
         Task::STATUS_OPEN => 'open',
         Task::STATUS_IN_PROGRESS => 'inProgress',
