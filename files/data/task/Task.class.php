@@ -58,7 +58,7 @@ class Task extends DatabaseObject implements ITitledLinkObject
      */
     public function getLink()
     {
-        return LinkHandler::getInstance()->getLink(
+        return /** @scrutinizer ignore-call */LinkHandler::getInstance()->getLink(
             'Task',
             ['object' => $this]
         );
