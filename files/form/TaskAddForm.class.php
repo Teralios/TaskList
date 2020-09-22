@@ -10,6 +10,7 @@ use wcf\system\form\builder\container\wysiwyg\WysiwygFormContainer;
 use wcf\system\form\builder\field\DateFormField;
 use wcf\system\form\builder\field\SingleSelectionFormField;
 use wcf\system\form\builder\field\TitleFormField;
+use wcf\system\menu\user\UserMenu;
 
 /**
  * Class        TaskAddForm
@@ -24,6 +25,14 @@ class TaskAddForm extends AbstractFormBuilderForm
     // inherit vars
     public $objectActionClass = TaskAction::class;
     public $formAction = 'create';
+    public $activeUserMenuItem = 'wcf.user.menu.taskList.list';
+
+    public function readParameters()
+    {
+        parent::readParameters();
+
+        /** @scrutinizer ignore-call */UserMenu::getInstance()->setActiveMenuItem($this->activeMenuItem);
+    }
 
     /**
      * @inheritdoc
