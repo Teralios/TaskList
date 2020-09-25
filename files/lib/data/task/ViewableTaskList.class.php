@@ -25,8 +25,9 @@ class ViewableTaskList extends TaskList
 
     /**
      * Set load subtasks.
+     * @return static
      */
-    public function withSubtask()
+    public function withSubtasks()
     {
         $this->withSubtask = true;
 

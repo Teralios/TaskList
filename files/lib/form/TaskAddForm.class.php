@@ -5,6 +5,7 @@ namespace wcf\form;
 // imports
 use wcf\data\task\Task;
 use wcf\data\task\TaskAction;
+use wcf\system\exception\SystemException;
 use wcf\system\form\builder\container\FormContainer;
 use wcf\system\form\builder\container\wysiwyg\WysiwygFormContainer;
 use wcf\system\form\builder\field\DateFormField;
@@ -27,6 +28,10 @@ class TaskAddForm extends AbstractFormBuilderForm
     public $formAction = 'create';
     public $activeUserMenuItem = 'wcf.user.menu.taskList.list';
 
+    /**
+     * @inheritdoc
+     * @throws SystemException
+     */
     public function readParameters()
     {
         parent::readParameters();

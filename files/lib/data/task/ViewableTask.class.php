@@ -61,7 +61,7 @@ class ViewableTask extends DatabaseObjectDecorator
      */
     const STATUS_CLASS = [
         Task::STATUS_OPEN => 'open',
-        Task::STATUS_IN_PROGRESS => 'inProgress',
+        Task::STATUS_IN_PROGRESS => 'progress',
         Task::STATUS_CLOSED => 'closed'
     ];
 

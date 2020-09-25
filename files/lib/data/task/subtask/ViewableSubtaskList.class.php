@@ -56,10 +56,10 @@ class ViewableSubtaskList extends SubtaskList
         /** @var ViewableSubtask $subtask */
         foreach ($subtaskList as $subtask)
         {
-            if ($subtask->taskID == $this->task->getObjectID()) {
-                $this->objectIDs[] = $subtask->getObjectID();
-                $this->objects[$subtask->getObjectID()] = $subtask;
-                $this->indexToObject[] = $subtask->getObjectID();
+            if ($subtask->taskID == $this->task->taskID) {
+                $this->objectIDs[] = $subtask->subtaskID;
+                $this->objects[$subtask->subtaskID] = $subtask;
+                $this->indexToObject[] = $subtask->subtaskID;
             }
         }
 
