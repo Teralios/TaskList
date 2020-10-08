@@ -61,5 +61,4 @@ class TaskEditor extends DatabaseObjectEditor
     {
         $this->updateCounters(['completed' => $num]);
     }
-
 }
