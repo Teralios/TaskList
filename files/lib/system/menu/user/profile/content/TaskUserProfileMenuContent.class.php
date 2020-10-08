@@ -20,7 +20,7 @@ class TaskUserProfileMenuContent extends SingletonFactory implements IUserProfil
         if ($userID == WCF::getUser()->userID) {
             $visible = Task::VISIBLE_PRIVATE;
         } else {
-            $userProfile = UserProfileRuntimeCache::getInstance()->getObject($userID);
+            $userProfile = /** @scrutinizer ignore-call */UserProfileRuntimeCache::getInstance()->getObject($userID);
             $visible = ($userProfile->isFollowing(WCF::getUser()->userID)) ? Task::VISIBLE_FOLLOWER : $visible;
         }
 
