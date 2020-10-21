@@ -1,5 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/page.xsd">
 	<import>
+		<page identifier="de.teralios.taskList.ProjectList">
+			<pageType>system</pageType>
+			<controller>wcf\page\ProjectListPage</controller>
+			<name language="de">Nutzerprojekte</name>
+			<name language="en">User projects</name>
+			<permissions>user.taskList.canView</permissions>
+			<cssClassName>userProjectList</cssClassName>
+			<allowSpidersToIndex>1</allowSpidersToIndex>
+			<content language="en">
+				<title>User projects</title>
+			</content>
+			<content language="de">
+				<title>Nutzerprojekte</title>
+			</content>
+		</page>
+		<page identifier="de.teralios.taskList.ProjectAdd">
+			<pageType>system</pageType>
+			<controller>wcf\form\ProjectAddForm</controller>
+			<name language="de">Projekt hinzufügen</name>
+			<name language="en">Add project</name>
+			<parent>de.teralios.taskList.ProjectList</parent>
+			<permissions>user.taskList.canUse</permissions>
+			<cssClassName>userProjectAdd</cssClassName>
+			<excludeFromLandingPage>1</excludeFromLandingPage>
+			<content language="en">
+				<title>Add project</title>
+			</content>
+			<content language="de">
+				<title>Projekt hinzufügen</title>
+			</content>
+		</page>
 	</import>
 </data>
