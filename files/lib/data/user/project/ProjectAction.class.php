@@ -15,7 +15,8 @@ class ProjectAction extends AbstractDatabaseObjectAction
     protected $permissionsUpdate = ['user.taskList.canUse', 'user.taskList.canEdit'];
     protected $permissionsDelete = ['user.taskList.canUse', 'user.taskList.canDelete'];
 
-    public function create() {
+    public function create()
+    {
         // set description from wysiwyg field.
         /** @var HtmlInputNodeProcessor $description */
         $description = $this->parameters['description_htmlInputProcessor'];
