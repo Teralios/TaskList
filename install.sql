@@ -8,7 +8,7 @@ CREATE TABLE wcf1_user_project (
     updateTime INT(10) NOT NULL DEFAULT 0,
     tasks MEDIUMINT(7) NOT NULL DEFAULT 0,
     name VARCHAR(191) NOT NULL,
-    icon VARCHAR(100) NOT NULL,
+    icon VARCHAR(100) NOT NULL DEFAULT '',
     description MEDIUMTEXT,
     KEY (userID),
     KEY (updateTime)

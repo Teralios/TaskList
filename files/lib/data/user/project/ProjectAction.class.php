@@ -28,6 +28,15 @@ class ProjectAction extends AbstractDatabaseObjectAction
         // time
         $this->parameters['data']['creationTime'] = $this->parameters['data']['updateTime'] = TIME_NOW;
 
-        parent::create();
+        // create base object.
+        $project = parent::create();
+
+        // icon
+        if ($this->parameters['iconType'] === 'file') {
+            $projectEditor = new ProjectEditor($project);
+            $projectEditor->setIcon($this->parameters['iconFile'][0]);
+        }
+
+        return $project;
     }
 }

@@ -5,13 +5,16 @@ namespace wcf\form;
 // imports
 use wcf\data\user\project\Project;
 use wcf\data\user\project\ProjectAction;
-use wcf\system\exception\SystemException;
 use wcf\system\form\builder\container\FormContainer;
+use wcf\system\form\builder\data\processor\CustomFormDataProcessor;
+use wcf\system\form\builder\field\dependency\ValueFormFieldDependency;
 use wcf\system\form\builder\field\IconFormField;
+use wcf\system\form\builder\field\RadioButtonFormField;
 use wcf\system\form\builder\field\SingleSelectionFormField;
 use wcf\system\form\builder\field\TitleFormField;
+use wcf\system\form\builder\field\UploadFormField;
 use wcf\system\form\builder\field\wysiwyg\WysiwygFormField;
-use wcf\system\page\PageLocationManager;
+use wcf\system\form\builder\IFormDocument;
 
 /**
  * Class        ProjectAddForm
@@ -35,11 +38,26 @@ class ProjectAddForm extends AbstractFormBuilderForm
     {
         parent::createForm();
 
-        // settings container
+        // setting container
         $container = FormContainer::create('settings')->label('wcf.taskList.project.settings');
         $container->appendChildren([
+            RadioButtonFormField::create('iconType')
+                ->label('wcf.taskList.project.icon.type')
+                ->options([
+                    'default' => 'wcf.taskList.project.icon.default',
+                    'fa' => 'wcf.taskList.project.icon.fontAwesome',
+                    'file' => 'wcf.taskList.project.icon.file'
+                ])
+                ->value('default')
+                ->required(),
+            UploadFormField::create('iconFile')
+                ->label('wcf.taskList.project.icon.file')
+                ->imageOnly()
+                ->maximum(1)
+                ->minimumImageWidth(Project::MIN_WIDTH)
+                ->minimumImageHeight(Project::MIN_HEIGHT),
             IconFormField::create('icon')
-                ->label('wcf.taskList.project.icon'),
+                ->label('wcf.taskList.project.icon.fontAwesome'),
             SingleSelectionFormField::create('visibility')
                 ->label('wcf.taskList.project.visibility')
                 ->required()
@@ -50,6 +68,18 @@ class ProjectAddForm extends AbstractFormBuilderForm
                 ])
                 ->value(0)
         ]);
+
+        // icon dependencies
+        $dependencyFile = ValueFormFieldDependency::create('iconIsFile')
+            ->field($container->getNodeById('iconType'))
+            ->values(['file']);
+        $container->getNodeById('iconFile')->addDependency($dependencyFile);
+        $dependencyFA = ValueFormFieldDependency::create('iconIsFA')
+            ->field($container->getNodeById('iconType'))
+            ->values(['fa']);
+        $container->getNodeById('icon')->addDependency($dependencyFA);
+
+        // add settings container
         $this->form->appendChild($container);
 
         // data container
@@ -68,5 +98,19 @@ class ProjectAddForm extends AbstractFormBuilderForm
                 ->supportQuotes(false),
         ]);
         $this->form->appendChild($container);
+
+        // data processor for icons
+        $iconDataProcessor = new CustomFormDataProcessor('iconFileOrFA', function(IFormDocument $document, array $parameters) {
+            $parameters['iconType'] = $parameters['data']['iconType'] ?? 'default';
+            unset($parameters['data']['iconType']);
+
+            if ($parameters['iconType'] === 'file') {
+                unset($parameters['data']['icon']);
+            }
+
+            return $parameters;
+        });
+
+        $this->form->getDataHandler()->addProcessor($iconDataProcessor);
     }
 }
