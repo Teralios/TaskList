@@ -15,6 +15,16 @@ use wcf\system\image\ImageHandler;
  * @author      Karsten (Teralios) Achterrath
  * @copyright   ©2020 Teralios.de
  * @license     GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
+ *
+ * @property-read int $projectID
+ * @property-read int $userID
+ * @property-read int $creationTime
+ * @property-read int $updateTime
+ * @property-read int $tasks
+ * @property-read int $visibility
+ * @property-read string $name
+ * @property-read string $description
+ * @property-read string $icon
  */
 class ProjectEditor extends DatabaseObjectEditor
 {
@@ -30,7 +40,7 @@ class ProjectEditor extends DatabaseObjectEditor
     {
         // resize image and save on origin location.
         $extension = substr($uploadFile->getFilename(), (strrpos($uploadFile->getFilename(), '.') + 1));
-        $iconFile = ImageHandler::getInstance()->getAdapter();
+        $iconFile = /** @scrutinizer ignore-call */ImageHandler::getInstance()->getAdapter();
         $iconFile->loadFile($uploadFile->getLocation());
         $iconFile->writeImage(
             $iconFile->createThumbnail(Project::MIN_WIDTH, Project::MIN_HEIGHT, false),

@@ -100,7 +100,7 @@ class ProjectAddForm extends AbstractFormBuilderForm
         $this->form->appendChild($container);
 
         // data processor for icons
-        $iconDataProcessor = new CustomFormDataProcessor('iconFileOrFA', function(IFormDocument $document, array $parameters) {
+        $iconDataProcessor = new CustomFormDataProcessor('iconFileOrFA', function (IFormDocument $document, array $parameters) {
             $parameters['iconType'] = $parameters['data']['iconType'] ?? 'default';
             unset($parameters['data']['iconType']);
 
