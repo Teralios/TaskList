@@ -1,6 +1,6 @@
 <?php
 
-namespace wcf\data\user\project;
+namespace theia\data\project;
 
 // imports
 use wcf\data\DatabaseObjectEditor;
@@ -56,11 +56,11 @@ class ProjectEditor extends DatabaseObjectEditor
 
     /**
      * @param string $extension
-     * @param bool $withPath
+     * @param bool $fullLocation
      * @return string
      */
-    protected function buildFilename(string $extension, bool $withPath = true): string
+    protected function buildFilename(string $extension, bool $fullLocation = true): string
     {
-        return (($withPath) ? WCF_DIR . Project::ICON_LOCATION : '') . sprintf(Project::ICON_FILE_NAME, $this->projectID, $extension);
+        return (($fullLocation) ? PROJECT_DIR . Project::ICON_LOCATION : '') . sprintf(Project::ICON_FILE_NAME, $this->projectID, $extension);
     }
 }

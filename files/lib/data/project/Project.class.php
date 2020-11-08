@@ -1,6 +1,6 @@
 <?php
 
-namespace wcf\data\user\project;
+namespace theia\data\project;
 
 // imports
 use wcf\data\DatabaseObject;
@@ -31,14 +31,14 @@ class Project extends DatabaseObject
     public const VISIBILITY_PRIVATE = 0;
     public const VISIBILITY_FOLLOW  = 1;
     public const VISIBILITY_PUBLIC  = 2;
-    public const OBJECT_TYPE = 'de.teralios.taskList.project';
+    public const OBJECT_TYPE = 'de.teralios.theia.project';
     public const MIN_WIDTH = 144;
     public const MIN_HEIGHT = 144;
     public const ICON_FILE_NAME = 'project_icon_%s.%s';
     public const ICON_LOCATION = 'images/projects/';
 
     // inherit variables
-    protected static $databaseTableName = 'user_project';
+    protected static $databaseTableName = 'project';
     protected static $databaseTableIndexName = 'projectID';
 
     /**
@@ -69,7 +69,7 @@ class Project extends DatabaseObject
             return null;
         }
 
-        return WCF::getPath() . self::ICON_LOCATION . $this->icon;
+        return WCF::getPath('projects') . self::ICON_LOCATION . $this->icon;
     }
 
     /**

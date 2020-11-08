@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/page.xsd">
 	<import>
-		<page identifier="de.teralios.taskList.ProjectList">
+		<page identifier="de.teralios.theia.ProjectList">
 			<pageType>system</pageType>
-			<controller>wcf\page\ProjectListPage</controller>
+			<controller>theia\page\ProjectListPage</controller>
 			<name language="de">Nutzerprojekte</name>
 			<name language="en">User projects</name>
-			<permissions>user.taskList.canView</permissions>
+			<permissions>user.theia.canView</permissions>
 			<cssClassName>userProjectList</cssClassName>
 			<allowSpidersToIndex>1</allowSpidersToIndex>
 			<content language="en">
-				<title>User projects</title>
+				<title>User theia</title>
 			</content>
 			<content language="de">
 				<title>Nutzerprojekte</title>
 			</content>
 		</page>
-		<page identifier="de.teralios.taskList.ProjectAdd">
+		<page identifier="de.teralios.theia.ProjectAdd">
 			<pageType>system</pageType>
-			<controller>wcf\form\ProjectAddForm</controller>
+			<controller>theia\form\ProjectAddForm</controller>
 			<name language="de">Projekt hinzufügen</name>
 			<name language="en">Add project</name>
-			<parent>de.teralios.taskList.ProjectList</parent>
-			<permissions>user.taskList.canUse</permissions>
+			<parent>de.teralios.theia.ProjectList</parent>
+			<permissions>user.theia.canUse</permissions>
 			<cssClassName>userProjectAdd</cssClassName>
 			<excludeFromLandingPage>1</excludeFromLandingPage>
 			<content language="en">

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/menuItem.xsd">
 	<import>
-		<item identifier="de.teralios.taskList.menu.projectList">
+		<item identifier="de.teralios.theia.menu.projectList">
 			<menu>com.woltlab.wcf.MainMenu</menu>
 			<title language="de">Nutzerprojekte</title>
 			<title language="en">User projects</title>
-			<page>de.teralios.taskList.ProjectList</page>
+			<page>de.teralios.theia.ProjectList</page>
 		</item>
 	</import>
 </data>

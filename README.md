@@ -5,5 +5,5 @@
 [![Scrutinizer code quality (GitHub/Bitbucket)](https://img.shields.io/scrutinizer/quality/g/teralios/tasklist/main)](https://scrutinizer-ci.com/g/Teralios/tasklist/?branch=main)
 [![Last commit (GitHub)](https://img.shields.io/github/last-commit/teralios/tasklist/main)](https://github.com/Teralios/tasklist/commits/main)
 
-# TaskList
-Simple task list Manager for WSC.
+# Projects
+Simple user project manager.

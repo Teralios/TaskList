@@ -1,6 +1,6 @@
 <?php
 
-namespace wcf\data\user\project;
+namespace theia\data\project;
 
 // imports
 use wcf\data\AbstractDatabaseObjectAction;
@@ -11,9 +11,9 @@ class ProjectAction extends AbstractDatabaseObjectAction
 {
     // inherit variables
     protected $className = ProjectEditor::class;
-    protected $permissionsCreate = ['user.taskList.canUse'];
-    protected $permissionsUpdate = ['user.taskList.canUse', 'user.taskList.canEdit'];
-    protected $permissionsDelete = ['user.taskList.canUse', 'user.taskList.canDelete'];
+    protected $permissionsCreate = ['user.theia.canUse'];
+    protected $permissionsUpdate = ['user.theia.canUse', 'user.theia.canEdit'];
+    protected $permissionsDelete = ['user.theia.canUse', 'user.theia.canDelete'];
 
     public function create()
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace wcf\data\user\project;
+namespace theia\data\project;
 
 // imports
 use wcf\data\DatabaseObjectList;

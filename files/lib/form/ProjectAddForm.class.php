@@ -1,10 +1,11 @@
 <?php
 
-namespace wcf\form;
+namespace theia\form;
 
 // imports
-use wcf\data\user\project\Project;
-use wcf\data\user\project\ProjectAction;
+use theia\data\project\Project;
+use theia\data\project\ProjectAction;
+use wcf\form\AbstractFormBuilderForm;
 use wcf\system\form\builder\container\FormContainer;
 use wcf\system\form\builder\data\processor\CustomFormDataProcessor;
 use wcf\system\form\builder\field\dependency\ValueFormFieldDependency;
@@ -18,7 +19,7 @@ use wcf\system\form\builder\IFormDocument;
 
 /**
  * Class        ProjectAddForm
- * @package     TaskList
+ * @package     de.teralios.theia
  * @subpackage  wcf\form
  * @author      Karsten (Teralios) Achterrath
  * @copyright   ©2020 Teralios.de
@@ -28,7 +29,7 @@ class ProjectAddForm extends AbstractFormBuilderForm
 {
     // inherit variables
     public $loginRequired = true;
-    public $neededPermissions = ['user.taskList.canUse'];
+    public $neededPermissions = ['user.theia.canUse'];
     public $objectActionClass = ProjectAction::class;
 
     /**
@@ -39,32 +40,32 @@ class ProjectAddForm extends AbstractFormBuilderForm
         parent::createForm();
 
         // setting container
-        $container = FormContainer::create('settings')->label('wcf.taskList.project.settings');
+        $container = FormContainer::create('settings')->label('theia.project.settings');
         $container->appendChildren([
             RadioButtonFormField::create('iconType')
-                ->label('wcf.taskList.project.icon.type')
+                ->label('theia.project.icon.type')
                 ->options([
-                    'default' => 'wcf.taskList.project.icon.default',
-                    'fa' => 'wcf.taskList.project.icon.fontAwesome',
-                    'file' => 'wcf.taskList.project.icon.file'
+                    'default' => 'theia.project.icon.default',
+                    'fa' => 'theia.project.icon.fontAwesome',
+                    'file' => 'theia.project.icon.file'
                 ])
                 ->value('default')
                 ->required(),
             UploadFormField::create('iconFile')
-                ->label('wcf.taskList.project.icon.file')
+                ->label('theia.project.icon.file')
                 ->imageOnly()
                 ->maximum(1)
                 ->minimumImageWidth(Project::MIN_WIDTH)
                 ->minimumImageHeight(Project::MIN_HEIGHT),
             IconFormField::create('icon')
-                ->label('wcf.taskList.project.icon.fontAwesome'),
+                ->label('theia.project.icon.fontAwesome'),
             SingleSelectionFormField::create('visibility')
-                ->label('wcf.taskList.project.visibility')
+                ->label('theia.project.visibility')
                 ->required()
                 ->options([
-                    Project::VISIBILITY_PRIVATE => 'wcf.taskList.project.visibility.private',
-                    Project::VISIBILITY_FOLLOW  => 'wcf.taskList.project.visibility.follow',
-                    Project::VISIBILITY_PUBLIC  => 'wcf.taskList.project.visibility.public'
+                    Project::VISIBILITY_PRIVATE => 'theia.project.visibility.private',
+                    Project::VISIBILITY_FOLLOW  => 'theia.project.visibility.follow',
+                    Project::VISIBILITY_PUBLIC  => 'theia.project.visibility.public'
                 ])
                 ->value(0)
         ]);
@@ -83,13 +84,13 @@ class ProjectAddForm extends AbstractFormBuilderForm
         $this->form->appendChild($container);
 
         // data container
-        $container = FormContainer::create('data')->label('wcf.taskList.project.data');
+        $container = FormContainer::create('data')->label('theia.project.data');
         $container->appendChildren([
             TitleFormField::create('name')
                 ->maximumLength(191)
                 ->required(),
             WysiwygFormField::create('description')
-                ->label('wcf.taskList.project.description')
+                ->label('theia.project.description')
                 ->objectType(Project::OBJECT_TYPE)
                 ->maximumLength(2500) // @todo user option
                 ->required()

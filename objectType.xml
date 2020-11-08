@@ -2,17 +2,17 @@
 <data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/objectType.xsd">
     <import>
         <type>
-            <name>de.teralios.taskList.project</name>
+            <name>de.teralios.theia.project</name>
             <definitionname>com.woltlab.wcf.message</definitionname>
         </type>
 
         <type>
-            <name>de.teralios.taskList.task</name>
+            <name>de.teralios.theia.task</name>
             <definitionname>com.woltlab.wcf.message</definitionname>
         </type>
 
         <type>
-            <name>de.teralios.taskList.subtask</name>
+            <name>de.teralios.theia.subtask</name>
             <definitionname>com.woltlab.wcf.message</definitionname>
         </type>
     </import>

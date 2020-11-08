@@ -1,10 +1,11 @@
 <?php
 
-namespace wcf\page;
+namespace theia\page;
 
 // imports
-use wcf\data\user\project\Project;
-use wcf\data\user\project\ProjectList;
+use theia\data\project\Project;
+use theia\data\project\ProjectList;
+use wcf\page\MultipleLinkPage;
 use wcf\system\WCF;
 
 class ProjectListPage extends MultipleLinkPage
@@ -14,6 +15,6 @@ class ProjectListPage extends MultipleLinkPage
 
     public function assignVariables()
     {
-        WCF::getTPL()->assign('project', new Project(12));
+        WCF::getTPL()->assign('project', new Project(1));
     }
 }

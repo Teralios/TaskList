@@ -2,21 +2,21 @@
 <data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/userGroupOption.xsd">
 	<import>
 		<categories>
-			<category name="user.taskList">
+			<category name="user.theia">
 				<parent>user</parent>
 			</category>
 		</categories>
 		<options>
-			<option name="user.taskList.canView">
-				<categoryname>user.taskList</categoryname>
+			<option name="user.theia.canView">
+				<categoryname>user.theia</categoryname>
 				<optiontype>boolean</optiontype>
 				<defaultvalue>1</defaultvalue>
 				<admindefaultvalue>1</admindefaultvalue>
 				<moddefaultvalue>1</moddefaultvalue>
 				<userdefaultvalue>1</userdefaultvalue>
 			</option>
-			<option name="user.taskList.canUse">
-				<categoryname>user.taskList</categoryname>
+			<option name="user.theia.canUse">
+				<categoryname>user.theia</categoryname>
 				<optiontype>boolean</optiontype>
 				<defaultvalue>0</defaultvalue>
 				<admindefaultvalue>1</admindefaultvalue>
@@ -24,8 +24,8 @@
 				<userdefaultvalue>1</userdefaultvalue>
 				<usersonly>1</usersonly>
 			</option>
-			<option name="user.taskList.numberOfProjects">
-				<categoryname>user.taskList</categoryname>
+			<option name="user.theia.numberOfProjects">
+				<categoryname>user.theia</categoryname>
 				<optiontype>infiniteInteger</optiontype>
 				<defaultvalue>0</defaultvalue>
 				<minvalue>0</minvalue>
