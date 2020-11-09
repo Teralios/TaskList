@@ -4,9 +4,19 @@ namespace theia\data\project;
 
 // imports
 use wcf\data\AbstractDatabaseObjectAction;
+use wcf\data\DatabaseObject;
+use wcf\system\exception\SystemException;
 use wcf\system\html\input\node\HtmlInputNodeProcessor;
 use wcf\system\WCF;
 
+/**
+ * Class        ProjectAction
+ * @package     de.teralios.theia
+ * @subpackage  theia\data\project
+ * @author      Karsten (Teralios) Achterrath
+ * @copyright   ©2020 Teralios.de
+ * @license     GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
+ */
 class ProjectAction extends AbstractDatabaseObjectAction
 {
     // inherit variables
@@ -15,7 +25,11 @@ class ProjectAction extends AbstractDatabaseObjectAction
     protected $permissionsUpdate = ['user.theia.canUse', 'user.theia.canEdit'];
     protected $permissionsDelete = ['user.theia.canUse', 'user.theia.canDelete'];
 
-    public function create()
+    /**
+     * @inheritdoc
+     * @throws SystemException
+     */
+    public function create(): DatabaseObject
     {
         // set description from wysiwyg field.
         /** @var HtmlInputNodeProcessor $description */

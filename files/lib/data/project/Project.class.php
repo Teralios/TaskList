@@ -3,6 +3,7 @@
 namespace theia\data\project;
 
 // imports
+use theia\data\TIconObject;
 use wcf\data\DatabaseObject;
 use wcf\system\html\output\HtmlOutputProcessor;
 use wcf\system\WCF;
@@ -10,7 +11,7 @@ use wcf\util\StringUtil;
 
 /**
  * Class        Project
- * @package     TaskList
+ * @package     de.teralios.theia
  * @subpackage  wcf\data\user\project
  * @author      Karsten (Teralios) Achterrath
  * @copyright   ©2020 Teralios.de
@@ -30,6 +31,7 @@ use wcf\util\StringUtil;
  */
 class Project extends DatabaseObject
 {
+    use TIconObject;
     // const visibility
     public const VISIBILITY_PRIVATE = 0;
     public const VISIBILITY_FOLLOW  = 1;
@@ -111,26 +113,5 @@ class Project extends DatabaseObject
         }
 
         return WCF::getPath('projects') . self::ICON_LOCATION . $this->icon;
-    }
-
-    /**
-     * Return valid icon classes.
-     * @param int $size
-     * @return string
-     */
-    protected function getIconSizeClass(int $size): string
-    {
-        $iconClasses = [
-            16 => 'icon16',
-            24 => 'icon24',
-            32 => 'icon32',
-            48 => 'icon48',
-            64 => 'icon64',
-            96 => 'icon96',
-            128 => 'icon128',
-            144 => 'icon144'
-        ];
-
-        return $iconClasses[$size] ?? 'icon64';
     }
 }

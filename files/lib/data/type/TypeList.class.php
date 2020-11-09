@@ -1,20 +1,19 @@
 <?php
 
-namespace theia\data\project;
+namespace theia\data\type;
 
 // imports
 use wcf\data\DatabaseObjectList;
 
 /**
- * Class        ProjectList
+ * Class        TypeList
  * @package     de.teralios.theia
- * @subpackage  theia\data\project
+ * @subpackage  theia\data\type
  * @author      Karsten (Teralios) Achterrath
  * @copyright   ©2020 Teralios.de
  * @license     GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
  */
-class ProjectList extends DatabaseObjectList
+class TypeList extends DatabaseObjectList
 {
-    // inherit variables
-    public $className = Project::class;
+    public $className = Type::class;
 }

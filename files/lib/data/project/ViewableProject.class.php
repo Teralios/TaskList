@@ -11,7 +11,7 @@ use wcf\system\template\plugin\TimeModifierTemplatePlugin;
 
 /**
  * Class        ViewableProject
- * @package     theia
+ * @package     de.teralios.theia
  * @subpackage  theia\data\project
  * @author      Karsten (Teralios) Achterrath
  * @copyright   ©2020 Teralios.de

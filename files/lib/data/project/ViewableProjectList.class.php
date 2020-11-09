@@ -2,10 +2,22 @@
 
 namespace theia\data\project;
 
+// imports
 use theia\data\task\Task;
 use wcf\system\cache\runtime\UserProfileRuntimeCache;
+use wcf\system\database\exception\DatabaseQueryException;
+use wcf\system\database\exception\DatabaseQueryExecutionException;
+use wcf\system\exception\SystemException;
 use wcf\system\WCF;
 
+/**
+ * Class        ViewableProjectList
+ * @package     de.teralios.theia
+ * @subpackage  theia\data\project
+ * @author      Karsten (Teralios) Achterrath
+ * @copyright   ©2020 Teralios.de
+ * @license     GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
+ */
 class ViewableProjectList extends ProjectList
 {
     // inherit variables
@@ -15,9 +27,20 @@ class ViewableProjectList extends ProjectList
      */
     public $objects = [];
 
+    /**
+     * @var bool Load statistic.
+     */
     protected $loadStatistic = false;
+
+    /**
+     * @var bool Load user
+     */
     protected $loadUser = false;
 
+    /**
+     * @param bool $loadStatistic
+     * @return $this
+     */
     public function withStatistic(bool $loadStatistic = true): self
     {
         $this->loadStatistic = $loadStatistic;
@@ -25,6 +48,10 @@ class ViewableProjectList extends ProjectList
         return $this;
     }
 
+    /**
+     * @param bool $withUser
+     * @return $this
+     */
     public function withUser(bool $withUser = true): self
     {
         $this->loadUser = $withUser;
@@ -32,6 +59,11 @@ class ViewableProjectList extends ProjectList
         return $this;
     }
 
+    /**
+     * @inheritdoc
+     * @return $this
+     * @throws SystemException
+     */
     public function readObjects(): self
     {
         parent::readObjects();
@@ -55,6 +87,11 @@ class ViewableProjectList extends ProjectList
         return $this;
     }
 
+    /**
+     * Load statistics for tasks.
+     * @throws DatabaseQueryException
+     * @throws DatabaseQueryExecutionException
+     */
     protected function loadTaskStatistic(): void
     {
         $sqlSelects = Task::getDatabaseTableAlias() . '.projectID, ';
@@ -63,12 +100,12 @@ class ViewableProjectList extends ProjectList
         $sqlSelects .= '(SELECT COUNT(taskID) FROM ' . Task::getDatabaseTableNAme() . ' WHERE projectID = ' . Task::getDatabaseTableAlias() . '.projectID AND status = 3) as closed';
 
         $sql = 'SELECT ' . $sqlSelects .'
-                FROM   ' . Task::getDatabaseTableName() . ' ' . Task::getDatabaseTAbleAlias() . '
+                FROM   ' . Task::getDatabaseTableName() . ' ' . Task::getDatabaseTableAlias() . '
                 WHERE  projectID IN (?' . str_repeat(', ?', count($this->objectIDs) - 1) . ')';
         $statement = WCF::getDB()->prepareStatement($sql);
         $statement->execute($this->objectIDs);
 
-        while(($row = $statement->fetchArray()) !== false) {
+        while (($row = $statement->fetchArray()) !== false) {
             $projectID = $row['projectID'];
 
             if (isset($this->objects[$projectID])) {

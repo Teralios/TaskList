@@ -10,7 +10,7 @@ use wcf\system\image\ImageHandler;
 
 /**
  * Class        ProjectEditor
- * @package     TaskList
+ * @package     de.teralios.theia
  * @subpackage  wcf\data\user\project
  * @author      Karsten (Teralios) Achterrath
  * @copyright   ©2020 Teralios.de
