@@ -4,6 +4,7 @@ namespace theia\data\project;
 
 // imports
 use wcf\data\DatabaseObject;
+use wcf\system\html\output\HtmlOutputProcessor;
 use wcf\system\WCF;
 use wcf\util\StringUtil;
 
@@ -21,17 +22,29 @@ use wcf\util\StringUtil;
  * @property-read int $updateTime
  * @property-read int $tasks
  * @property-read int $visibility
+ * @property-read int $status
+ * @property-read int $deleteTime
  * @property-read string $name
  * @property-read string $description
  * @property-read string $icon
  */
 class Project extends DatabaseObject
 {
-    // const
+    // const visibility
     public const VISIBILITY_PRIVATE = 0;
     public const VISIBILITY_FOLLOW  = 1;
     public const VISIBILITY_PUBLIC  = 2;
+
+    // const status
+    public const STATUS_OPEN = 0;
+    public const STATUS_ABORT = 1;
+    public const STATUS_CLOSED = 2;
+    public const STATUS_DELETED = 3;
+
+    // const object type
     public const OBJECT_TYPE = 'de.teralios.theia.project';
+
+    // const icon
     public const MIN_WIDTH = 144;
     public const MIN_HEIGHT = 144;
     public const ICON_FILE_NAME = 'project_icon_%s.%s';
@@ -40,6 +53,34 @@ class Project extends DatabaseObject
     // inherit variables
     protected static $databaseTableName = 'project';
     protected static $databaseTableIndexName = 'projectID';
+
+    /**
+     * Returns raw or formatted description.
+     * @param bool $raw
+     * @return string
+     */
+    public function getDescription(bool $raw = false): string
+    {
+        // raw html code.
+        if ($raw === true) {
+            return $this->description;
+        }
+
+        // html output processor.
+        $processor = new HtmlOutputProcessor();
+        $processor->process($this->description, self::OBJECT_TYPE, $this->projectID);
+        return $processor->getHtml();
+    }
+
+    /**
+     * Returns truncated description.
+     * @param int $length
+     * @return string
+     */
+    public function getPreview(int $length = 250): string
+    {
+        return StringUtil::truncateHTML($this->getDescription(), $length);
+    }
 
     /**
      * Returns icon tag.

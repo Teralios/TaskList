@@ -20,12 +20,12 @@
 		<excludedpackage version="6.0.0 Alpha 1">com.woltlab.wcf</excludedpackage>
 	</excludedpackages>
 	<instructions type="install">
-		<instruction type="file" application="theia"/>
-		<instruction type="template" application="theia"/>
+		<instruction type="sql" run="standalone"/>
+		<instruction type="file" run="standalone" application="theia"/>
+		<instruction type="template" run="standalone" application="theia"/>
 		<instruction type="objectType"/>
 		<instruction type="userGroupOption"/>
 		<instruction type="page"/>
 		<instruction type="menuItem"/>
-		<instruction type="sql" run="standalone"/>
 	</instructions>
 </package>

@@ -15,15 +15,18 @@ CREATE TABLE theia1_project (
     typeID INT(10) NULL,
     userID INT(10) NOT NULL,
     visibility TINYINT(1) NOT NULL DEFAULT 2,
+    status TINYINT(1) NOT NULL DEFAULT 1,
     creationTime INT(10) NOT NULL DEFAULT 0,
     updateTime INT(10) NOT NULL DEFAULT 0,
+    deleteTime INT(10) NOT NULL DEFAULT 0,
     tasks MEDIUMINT(7) NOT NULL DEFAULT 0,
     name VARCHAR(191) NOT NULL DEFAULT '',
     icon VARCHAR(100) NOT NULL DEFAULT '',
     description MEDIUMTEXT,
-    KEY (visibility),
-    KEY (userID),
-    KEY (updateTime)
+    KEY (visibility, status),
+    KEY (userID, status),
+    KEY (updateTime),
+    KEY (creationTime)
 );
 
 -- foreign keys

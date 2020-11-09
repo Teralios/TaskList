@@ -22,6 +22,8 @@ use wcf\system\image\ImageHandler;
  * @property-read int $updateTime
  * @property-read int $tasks
  * @property-read int $visibility
+ * @property-read int $status
+ * @property-read int $deleteTime
  * @property-read string $name
  * @property-read string $description
  * @property-read string $icon
