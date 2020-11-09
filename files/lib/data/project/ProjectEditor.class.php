@@ -61,6 +61,6 @@ class ProjectEditor extends DatabaseObjectEditor
      */
     protected function buildFilename(string $extension, bool $fullLocation = true): string
     {
-        return (($fullLocation) ? PROJECT_DIR . Project::ICON_LOCATION : '') . sprintf(Project::ICON_FILE_NAME, $this->projectID, $extension);
+        return (($fullLocation) ? THEIA_DIR . Project::ICON_LOCATION : '') . sprintf(Project::ICON_FILE_NAME, $this->projectID, $extension);
     }
 }

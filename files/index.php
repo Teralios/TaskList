@@ -4,4 +4,4 @@ require_once('./config.inc.php');
 require_once(RELATIVE_WCF_DIR . 'global.php');
 
 // request handler
-wcf\system\request\RequestHandler::getInstance()->handle('theia');
+/** @scrutinizer ignore-call */wcf\system\request\RequestHandler::getInstance()->handle('theia');
