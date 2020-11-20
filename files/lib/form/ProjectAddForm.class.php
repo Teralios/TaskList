@@ -10,6 +10,7 @@ use wcf\system\form\builder\container\FormContainer;
 use wcf\system\form\builder\data\processor\CustomFormDataProcessor;
 use wcf\system\form\builder\field\dependency\ValueFormFieldDependency;
 use wcf\system\form\builder\field\IconFormField;
+use wcf\system\form\builder\field\language\ContentLanguageFormField;
 use wcf\system\form\builder\field\RadioButtonFormField;
 use wcf\system\form\builder\field\SingleSelectionFormField;
 use wcf\system\form\builder\field\TitleFormField;
@@ -67,7 +68,9 @@ class ProjectAddForm extends AbstractFormBuilderForm
                     Project::VISIBILITY_FOLLOW  => 'theia.project.visibility.follow',
                     Project::VISIBILITY_PUBLIC  => 'theia.project.visibility.public'
                 ])
-                ->value(0)
+                ->value(0),
+            ContentLanguageFormField::create('languageID')
+                ->required(),
         ]);
 
         // icon dependencies

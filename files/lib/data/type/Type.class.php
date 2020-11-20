@@ -5,6 +5,7 @@ namespace theia\data\type;
 // imports
 use theia\data\TIconObject;
 use wcf\data\DatabaseObject;
+use wcf\system\WCF;
 
 /**
  * Class        Type
@@ -38,5 +39,16 @@ class Type extends DatabaseObject
     public function getIconTag(int $size = 64): string
     {
         return '<span class="icon ' . $this->getIconSizeClass($size) . ' ' . ((!empty($this->icon)) ? $this->icon : self::DEFAULT_ICON) . '"></span>';
+    }
+
+    public static function getLastPosition(): int
+    {
+        $sql = 'SELECT  COUNT(typeID) as lastPosition
+                FROM    ' . Type::getDatabaseTableName();
+        $statement = WCF::getDB()->prepareStatement($sql);
+        $statement->execute();
+        $row = $statement->fetchSingleRow();
+
+        return $row['lastPosition'] ?? 0;
     }
 }

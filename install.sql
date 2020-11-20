@@ -14,6 +14,7 @@ CREATE TABLE theia1_project (
     projectID INT(10) auto_increment PRIMARY KEY,
     typeID INT(10) NULL,
     userID INT(10) NOT NULL,
+    languageID INT(10) NULL DEFAULT NULL,
     visibility TINYINT(1) NOT NULL DEFAULT 2,
     status TINYINT(1) NOT NULL DEFAULT 1,
     creationTime INT(10) NOT NULL DEFAULT 0,
@@ -25,6 +26,7 @@ CREATE TABLE theia1_project (
     description MEDIUMTEXT,
     KEY (visibility, status),
     KEY (userID, status),
+    KEY (languageID),
     KEY (updateTime),
     KEY (creationTime)
 );
@@ -48,4 +50,5 @@ CREATE TABLE theia1_task (
 -- foreign keys
 ALTER TABLE theia1_project ADD FOREIGN KEY (userID) REFERENCES wcf1_user (userID) ON DELETE CASCADE;
 ALTER TABLE theia1_project ADD FOREIGN KEY (typeID) REFERENCES theia1_type (typeID) ON DELETE SET NULL;
+ALTER TABLE theia1_project ADD FOREIGN KEY (languageID) REFERENCES wcf1_language (languageID) ON DELETE SET NULL;
 ALTER TABLE theia1_task ADD FOREIGN KEY (projectID) REFERENCES theia1_project (projectID) ON DELETE CASCADE;
