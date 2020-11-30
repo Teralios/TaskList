@@ -3,6 +3,7 @@
 namespace theia\data\project;
 
 // imports
+use InvalidArgumentException;
 use wcf\data\DatabaseObjectDecorator;
 use wcf\data\user\UserProfile;
 use wcf\system\cache\runtime\UserProfileRuntimeCache;
@@ -69,7 +70,7 @@ class ViewableProject extends DatabaseObjectDecorator
     {
         // check count of tasks statistic.
         if (($closedTasks + $abortedTasks + $tasksInProgress) > $this->tasks) {
-            throw new \InvalidArgumentException('$tasksInProgress + $closedTasks + $abortedTasks > $tasks');
+            throw new InvalidArgumentException('$tasksInProgress + $closedTasks + $abortedTasks > $tasks');
         }
 
         // assign task status.
@@ -139,7 +140,6 @@ class ViewableProject extends DatabaseObjectDecorator
      */
     public function getWidth(string $type = 'closed'): ?string
     {
-        $tasks = 0;
         switch ($type) {
             case 'closed':
                 $tasks = $this->closedTasks;
